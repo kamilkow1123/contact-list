@@ -1,10 +1,14 @@
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { FaSpinner } from "react-icons/fa";
+import { addContact } from "../state/contactSlice";
 import "./contact.css";
 
-export default function ContactInput({ setContacts, contacts }) {
+export default function ContactInput() {
     const nameInputRef = useRef();
     const phoneInputRef = useRef();
+
+    const dispatch = useDispatch();
 
     const [ loading, setLoading ] = useState(false);
 
@@ -30,7 +34,7 @@ export default function ContactInput({ setContacts, contacts }) {
             nameInputRef.current.value = "";
             phoneInputRef.current.value = "";
 
-            setContacts([ ...contacts, data ]);
+            dispatch(addContact(data));
         } catch (err) {
             console.log(err);
         } finally {

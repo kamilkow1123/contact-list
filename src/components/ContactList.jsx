@@ -1,19 +1,41 @@
+import { useState, useEffect } from "react";
 import { FaUser, FaPhone, FaTrashAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { setContacts, deleteContact } from "../state/contactSlice";
 import "./contact.css";
 
-export default function ContactList({ contacts, loading, setContacts }) {
-    const deleteContact = async id => {
+export default function ContactList() {
+    const dispatch = useDispatch();
+    const [ loading, setLoading ] = useState(false);
+    const contacts = useSelector(state => state.contacts.listOfContacts);
+
+    const removeContact = async id => {
         if (!window.confirm("Are you sure?")) return;
         try {
             await fetch(`http://localhost:5000/contacts/${id}`, {
                 method : "DELETE",
             });
 
-            setContacts(contacts.filter(contact => contact.id !== id));
+            dispatch(deleteContact(id));
         } catch (err) {
             console.log(err);
         }
     };
+
+    const fetchContacts = async () => {
+        setLoading(true);
+        try {
+            const res = await fetch("http://localhost:5000/contacts");
+            const data = await res.json();
+            dispatch(setContacts(data));
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => fetchContacts(), []);
 
     return (
         <div className="contacts">
@@ -28,7 +50,7 @@ export default function ContactList({ contacts, loading, setContacts }) {
                         <div className="contact__info">
                             <button
                                 className="contact__delete-button"
-                                onClick={() => deleteContact(contact.id)}
+                                onClick={() => removeContact(contact.id)}
                             >
                                 <FaTrashAlt />
                             </button>
