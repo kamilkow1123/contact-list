@@ -1,0 +1,118 @@
+.contacts {
+    width: 100%;
+}
+
+.contact {
+    display: flex;
+    padding: 1rem;
+    /* width: 100%; */
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
+    margin: 1.5rem 0;
+    border-radius: 10px;
+    position: relative;
+}
+
+.contact__image {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 2px solid #0099ff;
+}
+
+.contact__info {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.contact__wrapper {
+    display: flex;
+    gap: 0.6rem;
+    color: grey;
+    font-size: 1.1rem;
+}
+
+.contact__name {
+    color: #313131;
+    font-weight: 700;
+}
+
+.contact__delete-button {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    color: rgb(255, 57, 57);
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.contact:hover .contact__delete-button {
+    opacity: 1;
+}
+
+.form {
+    width: 100%;
+}
+
+.form__group {
+    width: 100%;
+    display: flex;
+}
+
+.form__input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    outline: none;
+    border-radius: 10px 0 0 10px;
+    border: 2px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    font-size: 1.2rem;
+    color: grey;
+}
+
+.form__input:last-child {
+    border-radius: 0 10px 10px 0;
+    border-left: 1px solid lightgrey;
+    border-right: 2px solid lightgrey;
+}
+
+.form__button {
+    width: 100%;
+    margin: 1.5rem 0 0 0;
+    background: #0099ff;
+    border: none;
+    outline: none;
+    padding: 0.6rem;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.form__button:hover {
+    background: lightgrey;
+}
+
+.spinner {
+    animation: spin infinite 0.5s linear;
+
+    /*You can increase or decrease the timer (5s) to
+     increase or decrease the speed of the spinner*/
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import "./App.css";
 import ContactList from "./components/ContactList";
 import ContactInput from "./components/ContactInput";
 
